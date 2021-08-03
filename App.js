@@ -16,9 +16,20 @@ class App extends Component {
     this.state = {
       counter: 0,
     };
-
+    console.log('constructor');
     this.handleUp = this.handleUp.bind(this);
     this.handleDown = this.handleDown.bind(this);
+  }
+
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+  componentDidMount() {
+    // se ejecuta una sola vez al iniciar el componente
+    //sirve para hacer peticiones asincronas
+    // es valido usar setState
+    console.log('componentDidMount');
   }
 
   handleUp() {
@@ -33,6 +44,7 @@ class App extends Component {
 
   render() {
     const {counter} = this.state;
+    console.log('render');
     return (
       <View style={styles.container}>
         <View style={styles.subcontanier}>

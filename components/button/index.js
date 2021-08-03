@@ -2,15 +2,29 @@ import React, {Component} from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 
-/* class ButtonCustom extends Component {
+class ButtonCustom extends Component {
   //forma 1
   //static propTypes = {
   //label: PropTypes.string,
   //action: PropTypes.func,
   //}; 
+  constructor(props) {
+    super(props);
+
+    console.log('hijo constructor');
+  }
+
+  componentWillMount() {
+    console.log('hijo componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('hijo componentDidMount');
+  }
 
   render() {
     const {label, action} = this.props;
+    console.log('hijo reder');
     return (
       <TouchableOpacity style={styles.btn} onPress={action}>
         <Text style={styles.btnTxt}>{label}</Text>
@@ -22,9 +36,9 @@ import PropTypes from 'prop-types';
 ButtonCustom.prototypes = {
   label: PropTypes.string,
   action: PropTypes.func,
-};*/
+};
 
-function ButtonCustom(props) {
+/* function ButtonCustom(props) {
   const {label, action} = props;
   return (
     <TouchableOpacity style={styles.btn} onPress={action}>
@@ -42,7 +56,7 @@ ButtonCustom.prototypes = {
   // label: PropTypes.string.isRequired,
   label: PropTypes.string,
   action: PropTypes.func,
-};
+}; */
 
 const styles = StyleSheet.create({
   btn: {
