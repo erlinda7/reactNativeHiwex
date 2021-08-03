@@ -14,6 +14,7 @@ class ButtonCustom extends Component {
     console.log('hijo constructor');
   }
 
+  //deprecated
   componentWillMount() {
     console.log('hijo componentWillMount');
   }
@@ -22,6 +23,7 @@ class ButtonCustom extends Component {
     console.log('hijo componentDidMount');
   }
 
+  //deprecated
   componentWillReceiveProps() {
     //podemos el props insertar al un state local
     console.log(' hijo componentWillReceiveProps');
@@ -36,6 +38,7 @@ class ButtonCustom extends Component {
     //nos permite controlar el render si los valores son iguales no hacer render
   }
 
+  //deprecated
   componentWillUpdate() {
     //estoy a punto de hacer update
     //para resetear valores globales
@@ -48,6 +51,12 @@ class ButtonCustom extends Component {
     // dependiendo del los props antes del cambio hacemos alguna accion
     console.log({prevProps, prevState});
     console.log('hijo componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    //cada ves que se desmonte un componente
+    // para resetear los estados globales de la aplicacion
+    console.log('hijo componentWillUnmount');
   }
 
   render() {

@@ -15,10 +15,12 @@ class App extends Component {
     super(props);
     this.state = {
       counter: 0,
+      flag: false,
     };
     console.log('constructor');
     this.handleUp = this.handleUp.bind(this);
     this.handleDown = this.handleDown.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentWillMount() {
@@ -42,9 +44,15 @@ class App extends Component {
     this.setState({counter: ct - 1});
   }
 
+  handleDelete() {
+    this.setState({flag: true});
+  }
+
   render() {
-    const {counter} = this.state;
+    const {counter, flag} = this.state;
     console.log('render');
+
+    if (flag) return null;
     return (
       <View style={styles.container}>
         <View style={styles.subcontanier}>
@@ -53,6 +61,8 @@ class App extends Component {
             <Text style={styles.counter}>{counter}</Text>
           </View>
           <CustomButton label="+" action={this.handleUp} />
+
+          <CustomButton label="D" action={this.handleDelete} />
         </View>
       </View>
     );
