@@ -22,6 +22,34 @@ class ButtonCustom extends Component {
     console.log('hijo componentDidMount');
   }
 
+  componentWillReceiveProps() {
+    //podemos el props insertar al un state local
+    console.log(' hijo componentWillReceiveProps');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    //si se va actualizar o no nuestro componente
+    //actualiazacion de estado o props
+    console.log({nextProps, nextState});
+    console.log('hijo shouldComponentUpdate');
+    return true; // si hago render o no , true hace render y false no hace render
+    //nos permite controlar el render si los valores son iguales no hacer render
+  }
+
+  componentWillUpdate() {
+    //estoy a punto de hacer update
+    //para resetear valores globales
+    // no es recomendable usar aqui setState
+    console.log('hijo componentWillUpdate');
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    //configuraciones de librerias externas
+    // dependiendo del los props antes del cambio hacemos alguna accion
+    console.log({prevProps, prevState});
+    console.log('hijo componentDidUpdate');
+  }
+
   render() {
     const {label, action} = this.props;
     console.log('hijo reder');
