@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types';
 
-/* class Button extends Component {
+/* class ButtonCustom extends Component {
+  //forma 1
+  //static propTypes = {
+  //label: PropTypes.string,
+  //action: PropTypes.func,
+  //}; 
+
   render() {
     const {label, action} = this.props;
     return (
@@ -10,9 +17,14 @@ import {Text, TouchableOpacity, StyleSheet} from 'react-native';
       </TouchableOpacity>
     );
   }
-} */
+} 
+//forma 2
+ButtonCustom.prototypes = {
+  label: PropTypes.string,
+  action: PropTypes.func,
+};*/
 
-function Button(props) {
+function ButtonCustom(props) {
   const {label, action} = props;
   return (
     <TouchableOpacity style={styles.btn} onPress={action}>
@@ -20,6 +32,17 @@ function Button(props) {
     </TouchableOpacity>
   );
 }
+
+ButtonCustom.defaultProps = {
+  label: 'Button',
+  action: () => null,
+};
+
+ButtonCustom.prototypes = {
+  // label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  action: PropTypes.func,
+};
 
 const styles = StyleSheet.create({
   btn: {
@@ -36,4 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Button;
+export default ButtonCustom;
