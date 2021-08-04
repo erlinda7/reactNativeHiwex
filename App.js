@@ -10,6 +10,7 @@
 import React, {Component, PureComponent} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import CustomButton from './components/button';
+import ActionButtons from './components/actionButtons';
 
 //PureComponent es una extension que permite renderizar o no dependiendo si el valor cambio o no
 class App extends PureComponent {
@@ -22,6 +23,7 @@ class App extends PureComponent {
     this.handleUp = this.handleUp.bind(this);
     this.handleDown = this.handleDown.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.handlePlus10 = this.handlePlus10.bind(this);
   }
 
   handleUp() {
@@ -36,6 +38,11 @@ class App extends PureComponent {
 
   handleReset() {
     this.setState({counter: 0});
+  }
+
+  handlePlus10() {
+    const {counter: ct} = this.state;
+    this.setState({counter: ct + 10});
   }
 
   //evitar rerenders
@@ -58,9 +65,7 @@ class App extends PureComponent {
           <CustomButton label="+" action={this.handleUp} />
         </View>
         <View style={styles.subcontanierReset}>
-          <TouchableOpacity style={styles.btnReset} onPress={this.handleReset}>
-            <Text style={styles.btnTxt}>Reset</Text>
-          </TouchableOpacity>
+          <ActionButtons reset={this.handleReset} plus={this.handlePlus10} />
         </View>
       </View>
     );
