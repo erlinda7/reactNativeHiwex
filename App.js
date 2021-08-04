@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -6,32 +7,21 @@
  * @flow strict-local
  */
 
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import CustomButton from './components/button';
 
-class App extends Component {
+//PureComponent es una extension que permite renderizar o no dependiendo si el valor cambio o no
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       counter: 0,
       flag: false,
     };
-    console.log('constructor');
     this.handleUp = this.handleUp.bind(this);
     this.handleDown = this.handleDown.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  componentWillMount() {
-    console.log('componentWillMount');
-  }
-
-  componentDidMount() {
-    // se ejecuta una sola vez al iniciar el componente
-    //sirve para hacer peticiones asincronas
-    // es valido usar setState
-    console.log('componentDidMount');
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleUp() {
@@ -44,15 +34,20 @@ class App extends Component {
     this.setState({counter: ct - 1});
   }
 
-  handleDelete() {
-    this.setState({flag: true});
+  handleReset() {
+    this.setState({counter: 0});
   }
 
-  render() {
-    const {counter, flag} = this.state;
-    console.log('render');
+  //evitar rerenders
+  /* shouldComponentUpdate(nextProps, nextState) {
+    const {counter} = this.state;
+    if (nextState.counter === counter) return false;
+    return true;
+  } */
 
-    if (flag) return null;
+  render() {
+    const {counter} = this.state;
+    console.log('render');
     return (
       <View style={styles.container}>
         <View style={styles.subcontanier}>
@@ -61,8 +56,11 @@ class App extends Component {
             <Text style={styles.counter}>{counter}</Text>
           </View>
           <CustomButton label="+" action={this.handleUp} />
-
-          <CustomButton label="D" action={this.handleDelete} />
+        </View>
+        <View style={styles.subcontanierReset}>
+          <TouchableOpacity style={styles.btnReset} onPress={this.handleReset}>
+            <Text style={styles.btnTxt}>Reset</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -81,6 +79,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flexDirection: 'row',
   },
+  subcontanierReset: {
+    height: 50,
+    width: '100%',
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
   btn: {
     width: 50,
     height: 50,
@@ -89,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
   },
   btnTxt: {
-    fontSize: 25,
+    fontSize: 18,
     color: '#95a5a6',
     fontWeight: 'bold',
   },
@@ -102,6 +109,13 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: 'white',
     fontWeight: 'bold',
+  },
+  btnReset: {
+    height: 50,
+    width: '80%',
+    backgroundColor: '#ecf0f1',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
