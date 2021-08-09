@@ -1,49 +1,46 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Text, TextInput, TouchableOpacity, Touchable } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 
-class CreateUser extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      Email: 'Hello',
-      Password: null,
-      Phone: null,
-    };
-  }
-
-  render() {
-    const { Email, Password, Phone } = this.state;
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Email: </Text>
-        <TextInput
-          style={styles.text}
-          value={Email}
-          onChangeText={val => this.setState({ Email: val })}
-        />
-        <Text style={styles.title}>Password: </Text>
-        <TextInput
-          style={styles.text}
-          value={Password}
-          onChangeText={val => this.setState({ Password: val })}
-        />
-        <Text style={styles.title}>Phone: </Text>
-        <TextInput
-          style={styles.text}
-          value={Phone}
-          onChangeText={val => this.setState({ Phone: val })}
-        />
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => {
-            console.log({ Email, Password, Phone });
-          }}>
-          <Text style={styles.title}>Save</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+function CreateUser() {
+  const [Email, setEmail] = useState('Hello');
+  const [Password, setPassword] = useState(null);
+  const [Phone, setPhone] = useState(null);
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Email: </Text>
+      <TextInput
+        style={styles.text}
+        value={Email}
+        onChangeText={val => setEmail(val)}
+      />
+      <Text style={styles.title}>Password: </Text>
+      <TextInput
+        secureTextEntry
+        style={styles.text}
+        value={Password}
+        onChangeText={val => setPassword(val)}
+      />
+      <Text style={styles.title}>Phone: </Text>
+      <TextInput
+        style={styles.text}
+        value={Phone}
+        onChangeText={val => setPhone(val)}
+      />
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => {
+          console.log({ Email, Password, Phone });
+        }}>
+        <Text style={styles.title}>Save</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
