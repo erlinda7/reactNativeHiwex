@@ -32,6 +32,8 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupFilesAfterEnv": ["<rootDir>/setup-tests.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-tests.js"
+    ]
   }
 }

@@ -8,7 +8,10 @@ import Enzyme from 'enzyme';
  */
 const { JSDOM } = require('jsdom');
 
-const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
+const url = 'http://localhost';
+
+const jsdom = new JSDOM('<!DOCTYPE html><html><body></body></html>', { url });
+//const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
 
 function copyProps(src, target) {
@@ -29,4 +32,17 @@ copyProps(window, global);
  * Set up Enzyme to mount to DOM, simulate events,
  * and inspect the DOM in tests.
  */
+/**
+ * Ignore some expected warnings
+ * see: https://jestjs.io/docs/en/tutorial-react.html#snapshot-testing-with-mocks-enzyme-and-react-16
+ * see https://github.com/Root-App/react-native-mock-render/issues/6
+ */
+const originalConsoleError = console.error;
+console.error = message => {
+  if (message.startsWith('Warning:')) {
+    return;
+  }
+
+  originalConsoleError(message);
+};
 Enzyme.configure({ adapter: new Adapter() });
