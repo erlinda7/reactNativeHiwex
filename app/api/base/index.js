@@ -1,12 +1,7 @@
 import axios from 'axios';
 import { Service } from 'axios-middleware';
 
-const base = 'https://pokemon-go1.p.rapidapi.com';
-const headers = {
-  'x-rapidapi-host': 'pokemon-go1.p.rapidapi.com',
-  'x-rapidapi-key': 'cfa115aad1msh305ef3ffc77f4c4p15fe57jsn6029c6a90445',
-  useQueryString: true,
-};
+const base = 'http://localhost:5000/blog-30cdb/us-central1/'; // poner la url base de la cloud functions
 
 class Register {
   constructor() {
@@ -23,7 +18,7 @@ class Request {
   constructor(url, baseURL) {
     this.url = url;
     this.baseURL = baseURL || base;
-    this.request = axios.create({ baseURL: this.baseURL, headers });
+    this.request = axios.create({ baseURL: this.baseURL });
     const service = new Service(this.request);
     service.register(new Register());
   }
