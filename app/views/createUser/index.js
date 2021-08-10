@@ -6,7 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import axios from 'axios';
+
+import test from '../../api/test';
 
 class CreateUser extends Component {
   constructor(props) {
@@ -20,36 +21,7 @@ class CreateUser extends Component {
   }
 
   componentDidMount() {
-    const _path = 'https://pokemon-go1.p.rapidapi.com/pokemon_stats.json';
-    const _pathInst = 'https://pokemon-go1.p.rapidapi.com/';
-    const _headers = {
-      'x-rapidapi-host': 'pokemon-go1.p.rapidapi.com',
-      'x-rapidapi-key': 'cfa115aad1msh305ef3ffc77f4c4p15fe57jsn6029c6a90445',
-      useQueryString: true,
-    };
-    //forma 1
-    axios
-      .get(_path, {
-        headers: _headers,
-      })
-      .then(res1 => console.log({ res1 }));
-
-    //forma 2
-    axios({
-      method: 'get',
-      headers: _headers,
-      url: _path,
-    }).then(res2 => console.log({ res2 }));
-
-    //forma 3
-    const instAxios = axios.create({
-      baseURL: _pathInst,
-      headers: _headers,
-    });
-    instAxios({
-      method: 'get',
-      url: 'pokemon_stats.json',
-    }).then(res3 => console.log({ res3 }));
+    test.get().then(res => console.log({ res }));
   }
 
   render() {
