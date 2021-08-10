@@ -10,6 +10,10 @@ import Login, { styles } from '../app/views/login';
  * tipos
  */
 
+const props = {
+  click: jest.fn(),
+};
+
 describe('Redering', () => {
   let wrapper;
   beforeEach(() => {
@@ -43,5 +47,13 @@ describe('Redering', () => {
 });
 
 describe('Interaction', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = mount(<Login {...props} />);
+  });
 
+  it('Click Button', () => {
+    wrapper.find('TouchableOpacity').prop('onPress')();
+    expect(props.click).toHaveBeenCalledTimes(1);
+  });
 });
