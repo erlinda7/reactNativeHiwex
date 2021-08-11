@@ -35,6 +35,13 @@ function AppStack() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="Posts"
+          component={Routes.Posts}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="Login"
           component={Routes.Login}
           options={{
