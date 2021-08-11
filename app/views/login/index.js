@@ -5,8 +5,11 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
+  Image,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
+
+import userImg from '../../assets/icons/usuario.png';
 
 export const styles = StyleSheet.create({
   container: {
@@ -17,6 +20,8 @@ export const styles = StyleSheet.create({
   },
   subcontainer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     color: '#FFF',
@@ -41,11 +46,24 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  img: {
+    width: 100,
+    height: 100,
+    tintColor: '#FFF',
+  },
 });
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Email: null,
+      Password: null,
+    };
+  }
+
   componentDidMount() {
-    auth()
+    /* auth()
       .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
       .then(() => {
         console.log('User account created & signed in!');
@@ -60,22 +78,40 @@ class Login extends Component {
         }
 
         console.error(error);
-      });
+      }); */
   }
 
   render() { 
-    const { cont = 'container', click } = this.props;
+    const { Email, Password } = this.state;
     return (
       <View style={styles.container}>
-        <View style={styles.subcontainer} />
+        <View style={styles.subcontainer}>
+          <Image source={userImg} style={styles.img} />
+        </View>
 
         <View style={styles.subcontainer}>
           <Text style={styles.title}>Email</Text>
-          <TextInput style={styles.text} />
+          <TextInput
+            style={styles.text}
+            value={Email}
+            onChangeText={em => this.setState({ Email: em })}
+          />
           <Text style={styles.title}>Password</Text>
-          <TextInput style={styles.text} />
+          <TextInput
+            style={styles.text}
+            value={Password}
+            onChangeText={psw => this.setState({ Password: psw })}
+            secureTextEntry
+          />
 
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
+              auth()
+                .signInWithEmailAndPassword(Email, Password)
+                .then(usr => console.log({ usr }))
+                .catch(err => console.log({ err }));
+            }}>
             <Text style={styles.title}>Login</Text>
           </TouchableOpacity>
         </View>
