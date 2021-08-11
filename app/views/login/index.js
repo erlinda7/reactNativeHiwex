@@ -109,7 +109,7 @@ class Login extends Component {
             onPress={() => {
               auth()
                 .signInWithEmailAndPassword(Email, Password)
-                .then(usr => console.log({ usr }))
+                .then(usr => this.props.navigation.navigate('CreateUser'))
                 .catch(err => console.log({ err }));
             }}>
             <Text style={styles.title}>Login</Text>
