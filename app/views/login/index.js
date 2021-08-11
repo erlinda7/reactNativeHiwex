@@ -8,6 +8,7 @@ import {
   Image,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import printHOC from '../../hoc/print';
 
 import userImg from '../../assets/icons/usuario.png';
 
@@ -63,6 +64,8 @@ class Login extends Component {
   }
 
   componentDidMount() {
+    const { print } = this.props;
+    print('Login');
     /* auth()
       .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
       .then(() => {
@@ -121,4 +124,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default printHOC(Login);

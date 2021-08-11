@@ -25,6 +25,7 @@ function AppStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      <Stack.Screen name="CreateUser" component={Routes.CreateUser} />
         <Stack.Screen
           name="Login"
           component={Routes.Login}
@@ -38,7 +39,7 @@ function AppStack() {
             // headerLeft: Button,
           }}
         />
-        <Stack.Screen name="CreateUser" component={Routes.CreateUser} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

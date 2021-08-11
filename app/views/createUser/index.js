@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import createUser from '../../api/user';
+import printHOC from '../../hoc/print';
 
 class CreateUser extends Component {
   constructor(props) {
@@ -22,6 +23,8 @@ class CreateUser extends Component {
 
   componentDidMount() {
     console.log(this.props.route);
+    const { print } = this.props;
+    print('CreateUSer');
   }
 
   render() {
@@ -98,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateUser;
+export default printHOC(CreateUser);
