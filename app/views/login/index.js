@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import printHOC from '../../hoc/print';
+import Loading from '../../components/loading';
 
 import userImg from '../../assets/icons/usuario.png';
 
@@ -87,39 +88,41 @@ class Login extends Component {
   render() { 
     const { Email, Password } = this.state;
     return (
-      <View style={styles.container}>
-        <View style={styles.subcontainer}>
-          <Image source={userImg} style={styles.img} />
-        </View>
+      <Loading loading={false}>
+        <View style={styles.container}>
+          <View style={styles.subcontainer}>
+            <Image source={userImg} style={styles.img} />
+          </View>
 
-        <View style={styles.subcontainer}>
-          <Text style={styles.title}>Email</Text>
-          <TextInput
-            style={styles.text}
-            value={Email}
-            onChangeText={em => this.setState({ Email: em })}
-          />
-          <Text style={styles.title}>Password</Text>
-          <TextInput
-            style={styles.text}
-            value={Password}
-            onChangeText={psw => this.setState({ Password: psw })}
-            secureTextEntry
-          />
+          <View style={styles.subcontainer}>
+            <Text style={styles.title}>Email</Text>
+            <TextInput
+              style={styles.text}
+              value={Email}
+              onChangeText={em => this.setState({ Email: em })}
+            />
+            <Text style={styles.title}>Password</Text>
+            <TextInput
+              style={styles.text}
+              value={Password}
+              onChangeText={psw => this.setState({ Password: psw })}
+              secureTextEntry
+            />
 
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              this.props.navigation.navigate('CreateUser', { ID: 1 });
-              /* auth()
-                .signInWithEmailAndPassword(Email, Password)
-                .then(usr => this.props.navigation.navigate('CreateUser'))
-                .catch(err => console.log({ err })); */
-            }}>
-            <Text style={styles.title}>Login</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                this.props.navigation.navigate('CreateUser', { ID: 1 });
+                /* auth()
+                  .signInWithEmailAndPassword(Email, Password)
+                  .then(usr => this.props.navigation.navigate('CreateUser'))
+                  .catch(err => console.log({ err })); */
+              }}>
+              <Text style={styles.title}>Login</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </Loading>
     );
   }
 }
