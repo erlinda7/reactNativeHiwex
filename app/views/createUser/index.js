@@ -21,7 +21,7 @@ class CreateUser extends Component {
   }
 
   componentDidMount() {
-
+    console.log(this.props.route);
   }
 
   render() {
