@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Touchable, TouchableOpacity, Text } from 'react-native';
 
 import Loading from '../../components/loading';
 import Button from '../../components/button';
@@ -53,6 +53,13 @@ class Login extends Component {
                   .catch(err => console.log({ err })); */
               }}
             />
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('CreateUser')}>
+              <Text
+                style={{ color: '#fff', fontWeight: 'bold', marginTop: 10 }}>
+                Create An Account
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Loading>
