@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 
 import Button from '../../components/button';
 
@@ -22,11 +23,32 @@ const Posts = () => {
   ];
   return (
     <View style={styles.container}>
-      <ScrollView>
-        {arr.map(i => (
-          <Button title={i.name} action={() => console.log(i.name)} />
-        ))}
-      </ScrollView>
+      <FlatList
+        data={arr}
+        renderItem={({ item, index }) => (
+          <Button title={item.name} action={() => console.log(item.name)} />
+        )}
+        showsVerticalScrollIndicator={false}
+        ItemSeparatorComponent={() => (
+          <View
+            style={{ height: 10, width: '100%', backgroundColor: 'black' }}
+          />
+        )}
+        //cuando el array es vacio
+        ListEmptyComponent={() => (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 30,
+            }}>
+            <Text>Empty</Text>
+          </View>
+        )}
+        // para mostrar en forma horizontal la lista y no en vertical
+        //horizontal
+      />
     </View>
   );
 };
